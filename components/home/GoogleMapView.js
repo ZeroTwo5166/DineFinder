@@ -5,7 +5,7 @@ import Markers from './Markers'
 import { SelectedBusinessContext } from '@/context/SelectedBusinessContext'
 
 const GoogleMapView = ({businessList}) => {
-  const {userLocation,setUserLocation} = useContext(UserLocationContext);
+  const {userLocation} = useContext(UserLocationContext);
   const {selectedBusiness, setSelectedBusiness} = useContext(SelectedBusinessContext)
   const [map,setMap] = useState();
 

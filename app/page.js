@@ -30,17 +30,18 @@ export default function Home() {
     getGooglePlace();
   }, [category, radius])
 
-  const getGooglePlace=()=>{
-    if(category){
-      setLoading(true)
-    GlobalApi.getGooglePlace(category,radius,userLocation.lat, userLocation.lng).then(resp=>{
-      console.log(businessList)
-      setBusinessList(resp.data.product.results)
-      setBusinessListOrg(resp.data.product.results);
-      setLoading(false)
-    })
+  const getGooglePlace = () => {
+    if (category && userLocation.lat && userLocation.lng) {
+      setLoading(true);
+      GlobalApi.getGooglePlace(category, radius, userLocation.lat, userLocation.lng).then(resp => {
+        console.log(resp.data.product.results);
+        setBusinessList(resp.data.product.results);
+        setBusinessListOrg(resp.data.product.results);
+        setLoading(false);
+      });
     }
-  }
+  };
+  
 
   const onRatingChange=(rating)=>{
     if(rating.length==0)
