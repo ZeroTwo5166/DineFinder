@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
 const BASE_URL = "https://maps.googleapis.com/maps/api/place";
-const GOOGLE_API_KEY= process.env.GOOGLE_API_KEY
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
+export async function GET(request){
 
-export async function GET(requests){
-    const {searchParams}=new URL(requests.url)
+    const {searchParams}=new URL(request.url)
     const category=searchParams.get('category');
     const radius = searchParams.get("radius");
     const lat = searchParams.get("lat");
