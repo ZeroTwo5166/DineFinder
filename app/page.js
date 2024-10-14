@@ -6,13 +6,11 @@ import GoogleMapView from "@/components/home/GoogleMapView";
 import RangeSelect from "@/components/home/RangeSelect";
 import SelectRating from "@/components/home/SelectRating";
 import { UserLocationContext } from "@/context/UserLocationContext";
-import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import SkeltonLoading from "@/components/SkeltonLoading";
 
 export default function Home() {
-  const {data:session} = useSession();
   const [category,setCategory] = useState();
   const [radius,setRadius] = useState(2500);
   const [businessList, setBusinessList] = useState([]);
@@ -20,11 +18,6 @@ export default function Home() {
   const [loading,setLoading] = useState(true)
   const router = useRouter();
   const {userLocation, setUserLocation} = useContext(UserLocationContext);
-  useEffect(()=>{
-    if(!session?.user){
-      router.push('/login')
-    }
-  }, [session])
 
   useEffect(()=>{
     getGooglePlace();
